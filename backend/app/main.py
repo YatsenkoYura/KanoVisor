@@ -2,9 +2,16 @@ from subprocess import CompletedProcess
 
 from fastapi import FastAPI
 import subprocess as sp
-import re
+from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 @app.get("/")
 async def root():
     return {"Hello": "World"}
